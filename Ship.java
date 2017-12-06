@@ -8,9 +8,9 @@ public class Ship{
 	//Point origin, boolean isVertical, int length
 	// this constructor accepts the origin or the ship (its lowest, or leftmost point), its length, and its orientation (vertical, or horizontal).
 	public Ship(Point origin, boolean isVertical, int length){
-		add origin as first point
-		loop through length  to add other points - if vertical, then add coordinates
-		going up, if not vertical, add points going left
+		// add origin as first point
+		// loop through length  to add other points - if vertical, then add coordinates
+		// going up, if not vertical, add points going left
 
 	}
 	// Returns true if a Ship covers a point on the board, false if it does not.
