@@ -6,17 +6,6 @@ public class Board{
 	int columns = 10;
 	String[][] layout = new String[columns][rows];
 
-	public Board(){
-		// initialize everything on the board to '~'
-		for(int column=0; column < layout.length; column++){
-			for(int row=0; row < layout[column].length; row++){
-				layout[column][row] = "~";
-			}
-
-		}
-	}
-
-
 	public static void main(String[] args){
 		Board board = new Board();
 
@@ -29,6 +18,15 @@ public class Board{
 		board.layout[0][1] = "X";
 		board.layout[1][2] = "O";
 		board.displayBoard();
+	}
+	public Board(){
+		// initialize everything on the board to '~'
+		for(int column=0; column < layout.length; column++){
+			for(int row=0; row < layout[column].length; row++){
+				layout[column][row] = "~";
+			}
+
+		}
 	}
 	
 	public void displayBoard(){
