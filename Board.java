@@ -4,9 +4,11 @@ import java.util.Arrays;
 public class Board{
 	public static void main(String[] args){
 
-		Point test_point = new Point(1,2);
-		System.out.println(test_point);
-		System.out.println(Arrays.toString(test_point.get_coordinates()));
+		private Point ship1_origin = new Point(1,2);
+		// System.out.println(test_point);
+		// System.out.println(Arrays.toString(test_point.get_coordinates()));
+
+		private Ship ship1 = new Ship(ship1_origin,true,3);
 	}
 	
 }
