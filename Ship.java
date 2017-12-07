@@ -44,9 +44,13 @@ public class Ship{
 
 	}
 	// Returns true if the receiving ship shares a point with the argument ship.
-	// public boolean collidesWith(Ship s){
+	public boolean collidesWith(Ship s){
+		boolean collides = false;
+		for(Point points: s.get_coordinates()){
 
-	// }
+		}
+
+	}
 	// //When the user enters a coordinate, this method can be called on each ship. If the ship contains the point, it should remember that it has been hit at that point. It could do this with a second PointCollection, or some other data strategy.
 	// public void shotFiredAtPoint(Point p){
 

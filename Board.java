@@ -2,10 +2,7 @@ import java.util.ArrayList;
 // And a Board class that stores the data the game in general. It will have an array of Ship objects, and an ArrayList of points that represent the player's guesses. 
 // driver program
 public class Board{
-	int rows = 10;
-	int columns = 10;
-	// String[][] layout = new String[columns][rows];
-	ArrayList<Point> layout = new ArrayList<Point>();
+	private ArrayList<Point> layout = new ArrayList<Point>();
 
 	public static void main(String[] args){
 		Board board = new Board();
