@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+import java.util.Scanner;
 // driver program
 public class BattleShip{
 
@@ -51,7 +51,7 @@ public class BattleShip{
 		board.revealShips();
 		System.out.println("Take a guess: (ex: 0 0)");
 		guess = scan.nextLine().split(" ");
-		shot = new Point(guess[0],guess[1]);
+		shot = new Point(Integer.parseInt(guess[0]),Integer.parseInt(guess[1]));
 		board.hit(shot);
 		board.displayBoard();
 
