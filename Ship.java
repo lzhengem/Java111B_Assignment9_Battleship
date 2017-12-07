@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Ship{
 	
 	ArrayList<Point> coordinates = new ArrayList<Point>();
-	ArrayList<Point> hit = new ArrayList<Point>();
+	ArrayList<Point> gotHit = new ArrayList<Point>();
 
 	//Point origin, boolean isVertical, int length
 	// this constructor accepts the origin or the ship (its lowest, or leftmost point), its length, and its orientation (vertical, or horizontal).
@@ -34,10 +34,10 @@ public class Ship{
 
 	}
 	// Returns true if a Ship covers a point on the board, false if it does not.
-	public boolean containsPoint(Point P){
+	public boolean containsPoint(Point p){
 		boolean hasPoint = false;
 		for(Point point: coordinates){
-			if (point.equals(P))
+			if (point.equals(p))
 				hasPoint = true;
 		}
 		return hasPoint;
@@ -46,22 +46,32 @@ public class Ship{
 	// Returns true if the receiving ship shares a point with the argument ship.
 	public boolean collidesWith(Ship s){
 		boolean collides = false;
-		for(Point points: s.get_coordinates()){
-
+		for(Point point: s.get_coordinates()){
+			if (containsPoint(point))
+				collides = true;
 		}
+		return collides;
 
 	}
 	// //When the user enters a coordinate, this method can be called on each ship. If the ship contains the point, it should remember that it has been hit at that point. It could do this with a second PointCollection, or some other data strategy.
-	// public void shotFiredAtPoint(Point p){
-
-	// }
+	public void shotFiredAtPoint(Point p){
+		if (containsPoint(p))
+			gotHit.add(p);
+	}
 	// // returns true if shotFiredAtPoint has been called for this point in the ship. False if it has not, or if the point is not in the ship.
-	// public boolean isHitAtPoint(Point p){
+	public boolean isHitAtPoint(Point p){
+		boolean hasPoint = false;
+		for(Point point: gotHit){
+			if (point.equals(p))
+				hasPoint = true;
+		}
+		return hasPoint;
 
-	// }
+	}
 	// //returns the number of points in the ship that have been hit. When the hitCount is equal to the length of the ship the ship is considered to be sunk.
-	// public int hitCount(){
+	public int hitCount(){
+		return gotHit.size();
 
-	// }
+	}
 
 }

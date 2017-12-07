@@ -3,22 +3,24 @@ import java.util.ArrayList;
 // driver program
 public class Board{
 	private ArrayList<Point> layout = new ArrayList<Point>();
+	
 
 	public static void main(String[] args){
 		Board board = new Board();
 		Point origin = new Point(0,0);
-		Point origin2 = new Point(2,2);
-		Point origin3 = new Point(3,9);
-		Point origin4 = new Point(7,7);
+		// Point origin2 = new Point(2,2);
+		// Point origin3 = new Point(3,9);
+		// Point origin4 = new Point(7,7);
 		Ship ship = new Ship(origin,true,5);
-		Ship ship2 = new Ship(origin2,false,5);
-		Ship ship3 = new Ship(origin3,false,2);
-		Ship ship4 = new Ship(origin4,true,3);
+		// Ship ship2 = new Ship(origin2,false,5);
+		// Ship ship3 = new Ship(origin3,false,2);
+		// Ship ship4 = new Ship(origin4,true,3);
 		ArrayList<Ship> shipList = new ArrayList<Ship>();
+		
 		shipList.add(ship);
-		shipList.add(ship2);
-		shipList.add(ship3);
-		shipList.add(ship4);
+		// shipList.add(ship2);
+		// shipList.add(ship3);
+		// shipList.add(ship4);
 
 
 		// private Point ship1_origin = new Point(1,2);
@@ -99,5 +101,11 @@ public class Board{
 			}
 		System.out.println();
 	}
+
+	// public void addShipToBoard(Ship ship){
+	// 	shipList.add(ship);
+	// 	displayShipsOnBoard(shipList);
+
+	// }
 
 }
