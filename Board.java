@@ -61,10 +61,12 @@ public class Board{
 	}
 
 	public void hit(Point p){
-		
-		guesses.add(p);
-		for(Ship ship: ships){
-			ship.shotFiredAtPoint(p);
+		// add point to guess list if it hasn't been guessed already
+		if(!guesses.contains(p)){
+			guesses.add(p);
+			for(Ship ship: ships){
+				ship.shotFiredAtPoint(p);
+			}
 
 		}
 

@@ -5,6 +5,9 @@ public class BattleShip{
 
 	public static void main(String[] args){
 		Ship[] shipList = new Ship[5];
+		Scanner scan =new Scanner(System.in);
+		Point shot;
+		String[] guess;
 		// randomly generate 5 ships and adds it to shipList
 		for(int i = 0; i <= 4; i++){
 			int x = (int) (Math.random() * 10);
@@ -46,6 +49,12 @@ public class BattleShip{
 		System.out.println();
 		// board.displayShipsOnBoard(shipList);
 		board.revealShips();
+		System.out.println("Take a guess: (ex: 0 0)");
+		guess = scan.nextLine().split(" ");
+		shot = new Point(guess[0],guess[1]);
+		board.hit(shot);
+		board.displayBoard();
+
 		// ship.shotFiredAtPoint(origin);
 		// board.hit(origin);
 		// board.displayBoard();
