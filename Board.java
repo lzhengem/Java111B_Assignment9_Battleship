@@ -38,6 +38,10 @@ public class Board{
 			for(int column = 0; column <= total_columns; column++){
 				output ="~";
 				currentPoint = layout.get(row+column*(total_columns+ 1));
+				for (Point guess: guesses){
+					if(guess.equals(currentPoint))
+						output = ".";
+				}
 				for(Ship ship: ships){
 					if (ship.isHitAtPoint(currentPoint))
 						output= "X";
@@ -56,6 +60,15 @@ public class Board{
 		System.out.println();
 	}
 
+	public void hit(Point p){
+		
+		guesses.add(p);
+		for(Ship ship: ships){
+			ship.shotFiredAtPoint(p);
+
+		}
+
+	}
 	public void displayShipsOnBoard(ArrayList<Ship> shipList){
 		// get the number of columns and rows in the current board
 		int total_columns = layout.get(layout.size()-1).get_x();
