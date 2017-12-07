@@ -110,7 +110,16 @@ public class Board{
 	// 	displayShipsOnBoard(shipList);
 
 	// }
-	public void aimedAt(){
+	public boolean gameOver(){
+		// if at least one ship is not tanked, the game contines
+		boolean over =true;
+		for (int index = 0; index < ships.length; index++){
+			if(ships[index].hitCount() != ships[index].get_length()){
+				System.out.print(ships[index] +"hit count "+ ships[index].hitCount() + " length " + ships[index].get_length());
+				over = false;
+			}
+		}
+		return over;
 
 	}
 

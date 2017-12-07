@@ -5,10 +5,12 @@ public class Ship{
 	
 	ArrayList<Point> coordinates = new ArrayList<Point>();
 	ArrayList<Point> gotHit = new ArrayList<Point>();
+	int shipLength;
 
 	//Point origin, boolean isVertical, int length
 	// this constructor accepts the origin or the ship (its lowest, or leftmost point), its length, and its orientation (vertical, or horizontal).
 	public Ship(Point origin, boolean isVertical, int length){
+		shipLength = length;
 		Point newPoint;
 		coordinates.add(origin);
 		// if the ship is vertical, add length to y axis
@@ -55,7 +57,7 @@ public class Ship{
 	}
 	// //When the user enters a coordinate, this method can be called on each ship. If the ship contains the point, it should remember that it has been hit at that point. It could do this with a second PointCollection, or some other data strategy.
 	public void shotFiredAtPoint(Point p){
-		if (containsPoint(p))
+		if (containsPoint(p) && !gotHit.contains(p))
 			gotHit.add(p);
 	}
 	// // returns true if shotFiredAtPoint has been called for this point in the ship. False if it has not, or if the point is not in the ship.
@@ -72,6 +74,10 @@ public class Ship{
 	public int hitCount(){
 		return gotHit.size();
 
+	}
+
+	public int get_length(){
+		return shipLength;
 	}
 
 	public String toString(){
