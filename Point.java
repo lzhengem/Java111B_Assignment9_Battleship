@@ -24,5 +24,9 @@ public class Point{
 		return "(" + x +","+ y + ")";
 
 	}
+
+	public boolean equals(Point otherPoint){
+		return (x == otherPoint.get_x() && y == otherPoint.get_y());
+	}
 	
 }
