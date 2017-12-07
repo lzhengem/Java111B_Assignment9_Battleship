@@ -69,28 +69,26 @@ public class Board{
 		}
 
 	}
-	public void displayShipsOnBoard(ArrayList<Ship> shipList){
+	public void revealShips(){
 		// get the number of columns and rows in the current board
 		int total_columns = layout.get(layout.size()-1).get_x();
 		int total_rows = layout.get(layout.size()-1).get_y();
+		String output;
 		Point currentPoint;
-		String move;
 
 		for(int row = total_rows; row >= 0; row--){
 			// print out the row numbers
 			System.out.print(row + " ");
 			for(int column = 0; column <= total_columns; column++){
-				move = "~";
-				// because of the formatting of the board, row+column*(total_columns + 1) is the corresponding point of the board
-				currentPoint = layout.get(row+column*(total_columns + 1));
-
-				// check if a ship is placed on the current point
-				for(Ship ship: shipList){
+				output ="~";
+				currentPoint = layout.get(row+column*(total_columns+ 1));
+				for(Ship ship: ships){
 					if (ship.containsPoint(currentPoint))
-						move = "X";
+						output= "X";
+
 				}
-				System.out.print(move + " ");
-				
+				// printout something
+				System.out.print(output +" ");
 			}
 			System.out.println();
 		}
@@ -100,6 +98,9 @@ public class Board{
 				System.out.print(column + " ");
 			}
 		System.out.println();
+		for(Ship ship: ships){
+			System.out.println(ship);
+		}
 	}
 
 	// public void addShipToBoard(Ship ship){

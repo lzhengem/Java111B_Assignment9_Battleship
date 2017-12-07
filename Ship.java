@@ -74,4 +74,14 @@ public class Ship{
 
 	}
 
+	public String toString(){
+		String return_string = "";
+		for(Point point: coordinates){
+			return_string += (point.toString() + " ");
+
+		}
+		return return_string;
+
+	}
+
 }
