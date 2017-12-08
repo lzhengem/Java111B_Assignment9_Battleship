@@ -5,22 +5,12 @@ import java.util.Scanner;
 public class BattleShip{
 
 	public static void main(String[] args){
-		Ship[] shipList = new Ship[5];
-		// Ship[] shipList = new Ship[2];
-		Scanner scan =new Scanner(System.in);
-		Point shot;
-		String[] guess;
-		// randomly generate 5 ships and adds it to shipList
-		for(int i = 0; i <= 4; i++){
-		// for(int i = 0; i <= 1; i++){
-			int x = (int) (Math.random() * 10);
-			int y = (int) (Math.random() * 10);
-			boolean isVertical = Math.random() <0.5;
-			int length = (int) ((Math.random()* 3)+ 2);
-			Point origin = new Point(x,y);
-			Ship ship = new Ship(origin,isVertical,length);
-			shipList[i] = ship;
-		}
+		// Ship[] shipList = new Ship[5];
+		// // Ship[] shipList = new Ship[2];
+		// Scanner scan =new Scanner(System.in);
+		// Point shot;
+		// String[] guess;
+
 		
 		
 		// Point origin2 = new Point(2,2);
@@ -34,7 +24,7 @@ public class BattleShip{
 		
 		
 		// shipList.add(ship);
-		Board board = new Board(shipList);
+		Board board = new Board();
 		// shipList.add(ship2);
 		// shipList.add(ship3);
 		// shipList.add(ship4);
@@ -51,31 +41,31 @@ public class BattleShip{
 		board.displayBoard();
 		System.out.println();
 		// board.displayShipsOnBoard(shipList);
-		board.revealShips();
-		while (!board.gameOver()){
+		// board.revealShips();
+		// while (!board.gameOver()){
 			
-			System.out.println("Take a guess: (ex: 0 0)");
+			// System.out.println("Take a guess: (ex: 0 0)");
 			// if the use enters wrong thing, let them retry
 			// boolean retry = false;
    //      	int loopCount = 0;
 			// while(!retry){
-				try{
-					guess = scan.nextLine().split(" ");
-					// retry = true;
-				}
-				catch (ArrayIndexOutOfBoundsException e){
-					System.out.println("Please enter correct coordinates (ex: 0 0)");
-					guess = scan.nextLine().split(" ");
+				// try{
+				// 	guess = scan.nextLine().split(" ");
+				// 	// retry = true;
+				// }
+				// catch (ArrayIndexOutOfBoundsException e){
+				// 	System.out.println("Please enter correct coordinates (ex: 0 0)");
+				// 	guess = scan.nextLine().split(" ");
 					// loopCount ++;
 	    //        		if(loopCount == 5) retry = true;
 				// }
-			}
+			// }
 
 			
-			shot = new Point(Integer.parseInt(guess[0]),Integer.parseInt(guess[1]));
-			board.hit(shot);
-			board.displayBoard();
-		}
+		// 	shot = new Point(Integer.parseInt(guess[0]),Integer.parseInt(guess[1]));
+		// 	board.hit(shot);
+		// 	board.displayBoard();
+		// }
 
 		// ship.shotFiredAtPoint(origin);
 		// board.hit(origin);

@@ -7,13 +7,17 @@ public class Board{
 	private String[][] layout;
 	private Ship[] ships;
 	private ArrayList<Point> guesses = new ArrayList<Point>();
+	private int xLength, yLength;
 
 	// initializes board with 10 x 10 grid and creates 5 random ships
 	public Board(){
 		// initialize everything on board to "~"
-		int xLength =10, yLength =10;
+		xLength =10;
+		yLength =10;
+		ships = new Ship[5];
 		layout = new String[xLength][yLength];
-		Arrays.fill(layout, "~");
+		for(int index = 0; index < layout.length; index++)
+			Arrays.fill(layout[index], "~");
 
 		// randomly generate 5 ships and adds it to shipList
 		for(int i = 0; i <= 4; i++){
@@ -39,40 +43,23 @@ public class Board{
 	// public void addShip(Ship ship){
 	// 	ships.add(ship);
 	// }
-	// public void displayBoard(){
-	// 	// get the number of columns and rows in the current board
-	// 	int total_columns = layout.get(layout.size()-1).x;
-	// 	int total_rows = layout.get(layout.size()-1).y;
-	// 	String output;
-	// 	Point currentPoint;
+	public void displayBoard(){
+		for(int row = layout.length -1; row >= 0;row--){
+			// print out the column numbers
+			System.out.print(row +" ");
+			for(int column = 0; column < layout[row].length; column++){
+				// print out the board
+				System.out.print(layout[row][column] + " ");
+			}
+			System.out.println();
+		}
+		// print out the column numbers
+		System.out.print("  ");
+		for (int column = 0; column <xLength; column++)
+			System.out.print(column +" ");
+		
 
-	// 	for(int row = total_rows; row >= 0; row--){
-	// 		// print out the row numbers
-	// 		System.out.print(row + " ");
-	// 		for(int column = 0; column <= total_columns; column++){
-	// 			output ="~";
-	// 			currentPoint = layout.get(row+column*(total_columns+ 1));
-	// 			for (Point guess: guesses){
-	// 				if(guess.equals(currentPoint))
-	// 					output = ".";
-	// 			}
-	// 			for(Ship ship: ships){
-	// 				if (ship.isHitAtPoint(currentPoint))
-	// 					output= "X";
-
-	// 			}
-	// 			// printout something
-	// 			System.out.print(output +" ");
-	// 		}
-	// 		System.out.println();
-	// 	}
-	// 	// print out the column numbers
-	// 	System.out.print("  ");
-	// 	for(int column = 0; column <= total_columns; column++){
-	// 			System.out.print(column + " ");
-	// 		}
-	// 	System.out.println();
-	// }
+	}
 
 	// public void hit(Point p){
 	// 	// add point to guess list if it hasn't been guessed already
