@@ -7,7 +7,7 @@ public class Board{
 	private String[][] layout;
 	private Ship[] ships;
 	private ArrayList<Point> guesses = new ArrayList<Point>();
-	private int xLength, yLength;
+	int xLength, yLength;
 
 	// initializes board with 10 x 10 grid and creates 5 random ships
 	public Board(){
@@ -59,6 +59,7 @@ public class Board{
 		for (int x = 0; x <xLength; x++)
 			System.out.print(x +" ");
 		System.out.println();
+		System.out.println();
 		
 
 	}
@@ -109,6 +110,7 @@ public class Board{
 			System.out.print(ships[index]);
 			System.out.println();
 		}
+		System.out.println();
 	}
 
 	// if there is at least one ship that hasn't sunk, then the game continues
