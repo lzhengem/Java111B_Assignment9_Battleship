@@ -41,7 +41,7 @@ public class BattleShip{
 		board.displayBoard();
 		System.out.println();
 		// board.displayShipsOnBoard(shipList);
-		// board.revealShips();
+		board.revealShips();
 		// while (!board.gameOver()){
 			
 			// System.out.println("Take a guess: (ex: 0 0)");

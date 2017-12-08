@@ -84,7 +84,7 @@ public class Ship{
 	public String toString(){
 		String return_string = "";
 		for(Point point: coordinates){
-			return_string += (point.toString() + " ");
+			return_string += ("("+point.x+","+point.y+") ");
 
 		}
 		return return_string;

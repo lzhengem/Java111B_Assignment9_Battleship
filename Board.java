@@ -44,19 +44,21 @@ public class Board{
 	// 	ships.add(ship);
 	// }
 	public void displayBoard(){
-		for(int row = layout.length -1; row >= 0;row--){
+		for(int y = layout.length -1; y >= 0;y--){
 			// print out the column numbers
-			System.out.print(row +" ");
-			for(int column = 0; column < layout[row].length; column++){
+			System.out.print(y +" ");
+			for(int x = 0; x < layout[y].length; x++){
 				// print out the board
-				System.out.print(layout[row][column] + " ");
+				System.out.print(layout[x][y] + " ");
 			}
 			System.out.println();
 		}
 		// print out the column numbers
+		// print out the column numbers
 		System.out.print("  ");
-		for (int column = 0; column <xLength; column++)
-			System.out.print(column +" ");
+		for (int x = 0; x <xLength; x++)
+			System.out.print(x +" ");
+		System.out.println();
 		
 
 	}
@@ -72,39 +74,35 @@ public class Board{
 	// 	}
 
 	// }
-	// public void revealShips(){
-	// 	// get the number of columns and rows in the current board
-	// 	int total_columns = layout.get(layout.size()-1).x;
-	// 	int total_rows = layout.get(layout.size()-1).y;
-	// 	String output;
-	// 	Point currentPoint;
+	public void revealShips(){
+		Point currentPoint;
+		String display;
+		for(int y = yLength -1; y >= 0;y--){
+			// print out the column numbers
+			System.out.print(y +" ");
+			for(int x = 0; x < layout[y].length; x++){
+				// print out the board - if a ship is on this current point, then display 'X'
+				display = layout[x][y];
+				currentPoint = new Point(x,y);
+				for(int index = 0; index < ships.length; index++)
+					if (ships[index].containsPoint(currentPoint))
+						display = "X";
+				System.out.print( display + " ");
+			}
+			System.out.println();
+		}
+		// print out the column numbers
+		System.out.print("  ");
+		for (int x = 0; x <xLength; x++)
+			System.out.print(x +" ");
+		System.out.println();
 
-	// 	for(int row = total_rows; row >= 0; row--){
-	// 		// print out the row numbers
-	// 		System.out.print(row + " ");
-	// 		for(int column = 0; column <= total_columns; column++){
-	// 			output ="~";
-	// 			currentPoint = layout.get(row+column*(total_columns+ 1));
-	// 			for(Ship ship: ships){
-	// 				if (ship.containsPoint(currentPoint))
-	// 					output= "X";
-
-	// 			}
-	// 			// printout something
-	// 			System.out.print(output +" ");
-	// 		}
-	// 		System.out.println();
-	// 	}
-	// 	// print out the column numbers
-	// 	System.out.print("  ");
-	// 	for(int column = 0; column <= total_columns; column++){
-	// 			System.out.print(column + " ");
-	// 		}
-	// 	System.out.println();
-	// 	for(Ship ship: ships){
-	// 		System.out.println(ship);
-	// 	}
-	// }
+		// display the coordintaes for each ship
+		for(int index = 0; index < ships.length; index++){
+			System.out.print(ships[index]);
+			System.out.println();
+		}
+	}
 
 	// // public void addShipToBoard(Ship ship){
 	// // 	shipList.add(ship);
