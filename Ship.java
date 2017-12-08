@@ -1,3 +1,4 @@
+import java.awt.Point;
 import java.util.ArrayList;
 // A Ship class that stores the data for each ship. Your program will have five of these.
 // This ship class should keep two ArrayLists of points: one to store the points that the ship covers, and one to store the points that have been "hit" by the player.
@@ -16,14 +17,14 @@ public class Ship{
 		// if the ship is vertical, add length to y axis
 		if(isVertical){
 			for (int y = 1; y < length; y++){
-				newPoint = new Point(origin.get_x(), origin.get_y() + y);
+				newPoint = new Point(origin.getX(), origin.getY() + y);
 				coordinates.add(newPoint);
 			}
 		}
 		// if ship is horizontal, add length to x axis
 		else{
 			for (int x = 1; x < length; x++){
-				newPoint = new Point(origin.get_x() + x, origin.get_y());
+				newPoint = new Point(origin.getX() + x, origin.getY());
 				coordinates.add(newPoint);
 			}
 

@@ -1,4 +1,4 @@
-
+import java.awt.Point;
 import java.util.ArrayList;
 // And a Board class that stores the data the game in general. It will have an array of Ship objects, and an ArrayList of points that represent the player's guesses. 
 // driver program
