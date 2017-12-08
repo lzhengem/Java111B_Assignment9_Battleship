@@ -28,13 +28,16 @@ public class BattleShip{
 					// if they enter points off the grid, make them enter another time
 					if(x >= board.xLength || y >= board.yLength){
 						System.out.println("Make sure your numbers are less than " +  board.xLength + " " + board.yLength);	
+						System.out.println();
 					}
 					else
 						tryAgain = false;
 				}
+				// if player enters less than 2 numbers, make them enter again
 				catch (ArrayIndexOutOfBoundsException e){
 					System.out.println("Try again, please enter 2 numbers ");
 				}
+				// if the player enters a string, make them try again
 				catch(NumberFormatException e){
 					System.out.println("Try again, please enter 2 numbers, not characters ");
 

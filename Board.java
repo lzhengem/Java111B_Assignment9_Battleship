@@ -8,6 +8,7 @@ public class Board{
 	private Ship[] ships;
 	private ArrayList<Point> guesses = new ArrayList<Point>();
 	int xLength, yLength;
+	private String hitOrMiss ="";
 
 	// initializes board with 10 x 10 grid and creates 5 random ships
 	public Board(){
@@ -40,9 +41,7 @@ public class Board{
 			ships[i] = ship;
 		}
 	}
-	// public void addShip(Ship ship){
-	// 	ships.add(ship);
-	// }
+	
 	public void displayBoard(){
 		for(int y = layout.length -1; y >= 0;y--){
 			// print out the column numbers
@@ -54,11 +53,12 @@ public class Board{
 			System.out.println();
 		}
 		// print out the column numbers
-		// print out the column numbers
 		System.out.print("  ");
 		for (int x = 0; x <xLength; x++)
 			System.out.print(x +" ");
 		System.out.println();
+		// Let the player know if they hit or missed any ships
+		System.out.println(hitOrMiss);
 		System.out.println();
 		
 
@@ -70,18 +70,25 @@ public class Board{
 		// add point to guess list if it hasn't been guessed already
 		if(!guesses.contains(hitPoint)){
 			guesses.add(hitPoint);
-			// if it missed, it will be "."
+			// if it missed, it will be ".", and display message miss
+			hitOrMiss = "Missed.";
 			layout[x][y] = ".";
 			for(Ship ship: ships){
 				ship.shotFiredAtPoint(hitPoint);
-				if (ship.isHitAtPoint(hitPoint))
+				if (ship.isHitAtPoint(hitPoint)){
 					// If theres a ship at this point, then it will be "X"
 					layout[x][y] = "X";
+					hitOrMiss = "Hit!";
+				}
+				// if the ship has been sunk, let the player know
+				if (ship.sunk()){
+					hitOrMiss = "You sunk a ship of size "+ ship.shipLength + "!";	
+				}
 			}
-		}
+		}else
+			hitOrMiss = "You already guessed that spot!";
 	}
 
-	// }
 	public void revealShips(){
 		Point currentPoint;
 		String display;
@@ -105,7 +112,7 @@ public class Board{
 			System.out.print(x +" ");
 		System.out.println();
 
-		// display the coordintaes for each ship
+		// display the coordinates for each ship
 		for(int index = 0; index < ships.length; index++){
 			System.out.print(ships[index]);
 			System.out.println();
