@@ -45,9 +45,11 @@ public class Ship{
 	// Returns true if the receiving ship shares a point with the argument ship.
 	public boolean collidesWith(Ship s){
 		boolean collides = false;
-		for(Point point: coordinates){
-			if (containsPoint(point))
+		for(Point point: s.coordinates){
+			if (containsPoint(point)){
 				collides = true;
+				// System.out.println("The point is: " + point);
+			}
 		}
 		return collides;
 

@@ -33,7 +33,7 @@ public class BattleShip{
 		System.out.println("Hello and welcome to Battleship! Please enter x and y coordinates");
 		System.out.println("(max coordinate of " + (board.layout.length-1)+ ") you would like to hit!");
 		board.displayBoard();
-		// board.revealShips();
+		board.revealShips();
 
 
 		System.out.println("Take a shot: (ex: 0 0)");

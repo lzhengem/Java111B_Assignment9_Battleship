@@ -12,68 +12,102 @@ public class Board{
 
 	// initializes board with 10 x 10 grid and creates 5 random ships
 	public Board(){
-		// initialize everything on board to "~"
+		System.out.println("Setting up board");
+		// set the board to 10 x 10
 		xLength =10;
 		yLength =10;
 		int numShips = 5;
-		ships = new Ship[numShips];
+
+		// Fill up the board with '~'
 		layout = new String[xLength][yLength];
+
 		for(int index = 0; index < layout.length; index++)
 			Arrays.fill(layout[index], "~");
-
-		// randomly generate 5 ships and adds it to shipList
-		for(int i = 0; i < numShips; i++){
-			// randomize boolean and length between 2-4
-			boolean isVertical = Math.random() <0.5;
-			int x,y,length = (int) ((Math.random()* 3)+ 2);
-
-			// if ship is vertical, make sure the y is at least length way from the top of the board so the ship dosn't fall off the board
-			if(isVertical){
-				x = (int) (Math.random() * xLength);
-				y = (int) (Math.random() * (yLength-length));
-			}
-			// if ship is horizontal, make sure x coordinate is at least length away from edge of board
-			else{
-				x = (int) (Math.random() * (xLength-length));
-				y = (int) (Math.random() * yLength);
-			}
-			Point origin = new Point(x,y);
-			Ship ship = new Ship(origin,isVertical,length);
-			ships[i] = ship;
+		// generate 5 randomized ships and store it in array ships
+		System.out.println("generating ships");
+		ships = generateShips(numShips);
 		}
+
+	// randomly generates a select amount of ships and returns an array of the ships
+	public Ship[] generateShips(int numShips){
+		System.out.println("Inside generateShips");
+		Ship[] shipList = new Ship[numShips];
+		Ship ship;
+		boolean collidesWithOtherShip;
+		// randomly generate numShips amount of ships
+		for(int i = 0; i < numShips; i++){
+			do{
+				System.out.println("in do loop");
+				// if the ship collides with another ship, generate another ship
+				collidesWithOtherShip =false;
+				// randomize boolean and length between 2-4
+				boolean isVertical = Math.random() <0.5;
+				int x,y,length = (int) ((Math.random()* 3)+ 2);
+
+				// if ship is vertical, make sure the y is at least length way from the top of the board so the ship dosn't fall off the board
+				if(isVertical){
+					x = (int) (Math.random() * xLength);
+					y = (int) (Math.random() * (yLength-length));
+				}
+				// if ship is horizontal, make sure x coordinate is at least length away from edge of board
+				else{
+					x = (int) (Math.random() * (xLength-length));
+					y = (int) (Math.random() * yLength);
+				}
+				Point origin = new Point(x,y);
+				ship = new Ship(origin,isVertical,length);
+				
+				// check if this ship collides with any other ship on the board already
+				for(int index= 0; index< i; index++){
+					if (ship.collidesWith(shipList[index])){
+					// ship.collidesWith(shipList[index]);
+					// System.out.println(ship.collidesWith(shipList[index]));
+						System.out.println(ship);
+						System.out.println(shipList[index]);
+
+						collidesWithOtherShip =true;
+					}
+				}
+				
+
+			}while(collidesWithOtherShip);
+			shipList[i] = ship;
+		}
+		return shipList;
+
 	}
 
 	// allows player to initialize any board size and number of ships they like
-	public Board(int boardSize, int numShips){
-		// initialize everything on board to "~"
-		xLength =boardSize;
-		yLength =boardSize;
-		ships = new Ship[numShips];
-		layout = new String[xLength][yLength];
-		for(int index = 0; index < layout.length; index++)
-			Arrays.fill(layout[index], "~");
+	// public Board(int boardSize, int numShips){
+	// 	// initialize everything on board to "~"
+	// 	xLength =boardSize;
+	// 	yLength =boardSize;
+	// 	ships = new Ship[numShips];
+	// 	layout = new String[xLength][yLength];
+	// 	for(int index = 0; index < layout.length; index++)
+	// 		Arrays.fill(layout[index], "~");
 
-		// randomly generate ships and adds it to shipList
-		for(int i = 0; i < numShips; i++){
-			// randomize boolean and length between 2-4
-			boolean isVertical = Math.random() <0.5;
-			int x,y,length = (int) ((Math.random()* 3)+ 2);
+	// 	// randomly generate ships and adds it to shipList
+	// 	for(int i = 0; i < numShips; i++){
+	// 		// randomize boolean and length between 2-4
+	// 		boolean isVertical = Math.random() <0.5;
+	// 		int x,y,length = (int) ((Math.random()* 3)+ 2);
 
-			// if ship is vertical, make sure the y is at least length way from the top of the board so the ship dosn't fall off the board
-			if(isVertical){
-				x = (int) (Math.random() * xLength);
-				y = (int) (Math.random() * (yLength-length));
-			}
-			// if ship is horizontal, make sure x coordinate is at least length away from edge of board
-			else{
-				x = (int) (Math.random() * (xLength-length));
-				y = (int) (Math.random() * yLength);
-			}
-			Point origin = new Point(x,y);
-			Ship ship = new Ship(origin,isVertical,length);
-			ships[i] = ship;
-		}
-	}
+	// 		// if ship is vertical, make sure the y is at least length way from the top of the board so the ship dosn't fall off the board
+	// 		if(isVertical){
+	// 			x = (int) (Math.random() * xLength);
+	// 			y = (int) (Math.random() * (yLength-length));
+	// 		}
+	// 		// if ship is horizontal, make sure x coordinate is at least length away from edge of board
+	// 		else{
+	// 			x = (int) (Math.random() * (xLength-length));
+	// 			y = (int) (Math.random() * yLength);
+	// 		}
+	// 		Point origin = new Point(x,y);
+	// 		Ship ship = new Ship(origin,isVertical,length);
+	// 		ships[i] = ship;
+	// 	}
+	// }
 	
 	// Shows the board, hits, and misses
 	public void displayBoard(){
