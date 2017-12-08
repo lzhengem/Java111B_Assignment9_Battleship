@@ -27,8 +27,8 @@ public class Board{
 	// }
 	public void displayBoard(){
 		// get the number of columns and rows in the current board
-		int total_columns = layout.get(layout.size()-1).get_x();
-		int total_rows = layout.get(layout.size()-1).get_y();
+		int total_columns = layout.get(layout.size()-1).x;
+		int total_rows = layout.get(layout.size()-1).y;
 		String output;
 		Point currentPoint;
 
@@ -73,8 +73,8 @@ public class Board{
 	}
 	public void revealShips(){
 		// get the number of columns and rows in the current board
-		int total_columns = layout.get(layout.size()-1).get_x();
-		int total_rows = layout.get(layout.size()-1).get_y();
+		int total_columns = layout.get(layout.size()-1).x;
+		int total_rows = layout.get(layout.size()-1).y;
 		String output;
 		Point currentPoint;
 

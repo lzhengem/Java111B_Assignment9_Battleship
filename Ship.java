@@ -17,14 +17,14 @@ public class Ship{
 		// if the ship is vertical, add length to y axis
 		if(isVertical){
 			for (int y = 1; y < length; y++){
-				newPoint = new Point(origin.getX(), origin.getY() + y);
+				newPoint = new Point(origin.x, origin.y + y);
 				coordinates.add(newPoint);
 			}
 		}
 		// if ship is horizontal, add length to x axis
 		else{
 			for (int x = 1; x < length; x++){
-				newPoint = new Point(origin.getX() + x, origin.getY());
+				newPoint = new Point(origin.x + x, origin.y);
 				coordinates.add(newPoint);
 			}
 
