@@ -63,15 +63,22 @@ public class Board{
 
 	}
 
-	// public void hit(Point p){
-	// 	// add point to guess list if it hasn't been guessed already
-	// 	if(!guesses.contains(p)){
-	// 		guesses.add(p);
-	// 		for(Ship ship: ships){
-	// 			ship.shotFiredAtPoint(p);
-	// 		}
-
-	// 	}
+	// hit all the ships at x,y and add the guess to guess arraylist
+	public void hit(int x, int y){
+		Point hitPoint = new Point(x,y);
+		// add point to guess list if it hasn't been guessed already
+		if(!guesses.contains(hitPoint)){
+			guesses.add(hitPoint);
+			// if it missed, it will be "."
+			layout[x][y] = ".";
+			for(Ship ship: ships){
+				ship.shotFiredAtPoint(hitPoint);
+				if (ship.isHitAtPoint(hitPoint))
+					// If theres a ship at this point, then it will be "X"
+					layout[x][y] = "X";
+			}
+		}
+	}
 
 	// }
 	public void revealShips(){
@@ -104,22 +111,12 @@ public class Board{
 		}
 	}
 
-	// // public void addShipToBoard(Ship ship){
-	// // 	shipList.add(ship);
-	// // 	displayShipsOnBoard(shipList);
-
-	// // }
-	// public boolean gameOver(){
-	// 	// if at least one ship is not tanked, the game contines
-	// 	boolean over =true;
-	// 	for (int index = 0; index < ships.length; index++){
-	// 		if(ships[index].hitCount() != ships[index].get_length()){
-	// 			System.out.print(ships[index] +"hit count "+ ships[index].hitCount() + " length " + ships[index].get_length());
-	// 			over = false;
-	// 		}
-	// 	}
-	// 	return over;
-
-	// }
-
+	// if there is at least one ship that hasn't sunk, then the game continues
+	public boolean continueGame(){
+		boolean keepPlaying = false;
+		for(int index=0; index < ships.length; index++)
+			if(!ships[index].sunk())
+				keepPlaying = true;
+		return keepPlaying;
+	}
 }

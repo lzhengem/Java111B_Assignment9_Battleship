@@ -7,9 +7,10 @@ public class BattleShip{
 	public static void main(String[] args){
 		// Ship[] shipList = new Ship[5];
 		// // Ship[] shipList = new Ship[2];
-		// Scanner scan =new Scanner(System.in);
+		Scanner scan =new Scanner(System.in);
 		// Point shot;
-		// String[] guess;
+		String[] guess;
+		int x,y;
 
 		
 		
@@ -42,30 +43,34 @@ public class BattleShip{
 		System.out.println();
 		// board.displayShipsOnBoard(shipList);
 		board.revealShips();
-		// while (!board.gameOver()){
+		// board.hit(1,1);
+
+		// board.displayBoard();
+		while (board.continueGame()){
 			
-			// System.out.println("Take a guess: (ex: 0 0)");
+			System.out.println("Take a guess: (ex: 0 0)");
 			// if the use enters wrong thing, let them retry
 			// boolean retry = false;
    //      	int loopCount = 0;
 			// while(!retry){
 				// try{
-				// 	guess = scan.nextLine().split(" ");
+					guess = scan.nextLine().split(" ");
 				// 	// retry = true;
 				// }
 				// catch (ArrayIndexOutOfBoundsException e){
 				// 	System.out.println("Please enter correct coordinates (ex: 0 0)");
-				// 	guess = scan.nextLine().split(" ");
+					// guess = scan.nextLine().split(" ");
 					// loopCount ++;
 	    //        		if(loopCount == 5) retry = true;
 				// }
 			// }
 
-			
+			x = Integer.parseInt(guess[0]);
+			y = Integer.parseInt(guess[1]);
 		// 	shot = new Point(Integer.parseInt(guess[0]),Integer.parseInt(guess[1]));
-		// 	board.hit(shot);
-		// 	board.displayBoard();
-		// }
+			board.hit(x,y);
+			board.displayBoard();
+		}
 
 		// ship.shotFiredAtPoint(origin);
 		// board.hit(origin);

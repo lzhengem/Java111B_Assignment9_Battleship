@@ -90,5 +90,9 @@ public class Ship{
 		return return_string;
 
 	}
+	// true if ship has sunk
+	public boolean sunk(){
+		return shipLength == hitCount();
+	}
 
 }
