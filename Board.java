@@ -4,7 +4,7 @@ import java.util.Arrays;
 // And a Board class that stores the data the game in general. It will have an array of Ship objects, and an ArrayList of points that represent the player's guesses. 
 // driver program
 public class Board{
-	private String[][] layout;
+	String[][] layout;
 	private Ship[] ships;
 	private ArrayList<Point> guesses = new ArrayList<Point>();
 	int xLength, yLength;
@@ -15,13 +15,46 @@ public class Board{
 		// initialize everything on board to "~"
 		xLength =10;
 		yLength =10;
-		ships = new Ship[5];
+		int numShips = 5;
+		ships = new Ship[numShips];
 		layout = new String[xLength][yLength];
 		for(int index = 0; index < layout.length; index++)
 			Arrays.fill(layout[index], "~");
 
 		// randomly generate 5 ships and adds it to shipList
-		for(int i = 0; i <= 4; i++){
+		for(int i = 0; i < numShips; i++){
+			// randomize boolean and length between 2-4
+			boolean isVertical = Math.random() <0.5;
+			int x,y,length = (int) ((Math.random()* 3)+ 2);
+
+			// if ship is vertical, make sure the y is at least length way from the top of the board so the ship dosn't fall off the board
+			if(isVertical){
+				x = (int) (Math.random() * xLength);
+				y = (int) (Math.random() * (yLength-length));
+			}
+			// if ship is horizontal, make sure x coordinate is at least length away from edge of board
+			else{
+				x = (int) (Math.random() * (xLength-length));
+				y = (int) (Math.random() * yLength);
+			}
+			Point origin = new Point(x,y);
+			Ship ship = new Ship(origin,isVertical,length);
+			ships[i] = ship;
+		}
+	}
+
+	// allows player to initialize any board size and number of ships they like
+	public Board(int boardSize, int numShips){
+		// initialize everything on board to "~"
+		xLength =boardSize;
+		yLength =boardSize;
+		ships = new Ship[numShips];
+		layout = new String[xLength][yLength];
+		for(int index = 0; index < layout.length; index++)
+			Arrays.fill(layout[index], "~");
+
+		// randomly generate ships and adds it to shipList
+		for(int i = 0; i < numShips; i++){
 			// randomize boolean and length between 2-4
 			boolean isVertical = Math.random() <0.5;
 			int x,y,length = (int) ((Math.random()* 3)+ 2);
@@ -42,6 +75,7 @@ public class Board{
 		}
 	}
 	
+	// Shows the board, hits, and misses
 	public void displayBoard(){
 		for(int y = layout.length -1; y >= 0;y--){
 			// print out the column numbers
@@ -60,8 +94,6 @@ public class Board{
 		// Let the player know if they hit or missed any ships
 		System.out.println(hitOrMiss);
 		System.out.println();
-		
-
 	}
 
 	// hit all the ships at x,y and add the guess to guess arraylist
@@ -76,7 +108,7 @@ public class Board{
 			for(Ship ship: ships){
 				ship.shotFiredAtPoint(hitPoint);
 				if (ship.isHitAtPoint(hitPoint)){
-					// If theres a ship at this point, then it will be "X"
+					// If theres a ship at point x,y, then it will be "X"
 					layout[x][y] = "X";
 					hitOrMiss = "Hit!";
 				}
@@ -86,9 +118,11 @@ public class Board{
 				}
 			}
 		}else
+			// if player alraedy guessed this spot, let them know
 			hitOrMiss = "You already guessed that spot!";
 	}
 
+	// to display where all the ships are
 	public void revealShips(){
 		Point currentPoint;
 		String display;

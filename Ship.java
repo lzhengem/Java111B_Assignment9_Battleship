@@ -1,14 +1,15 @@
 import java.awt.Point;
 import java.util.ArrayList;
-// A Ship class that stores the data for each ship. Your program will have five of these.
-// This ship class should keep two ArrayLists of points: one to store the points that the ship covers, and one to store the points that have been "hit" by the player.
+/** A Ship class that stores the data for each ship.
+ This ship class keeps two ArrayLists of points: one to store the points that the ship covers, 
+ and one to store the points that have been "hit" by the player.
+**/
 public class Ship{
 	
 	ArrayList<Point> coordinates = new ArrayList<Point>();
 	ArrayList<Point> gotHit = new ArrayList<Point>();
 	int shipLength;
 
-	//Point origin, boolean isVertical, int length
 	// this constructor accepts the origin or the ship (its lowest, or leftmost point), its length, and its orientation (vertical, or horizontal).
 	public Ship(Point origin, boolean isVertical, int length){
 		shipLength = length;
@@ -27,16 +28,10 @@ public class Ship{
 				newPoint = new Point(origin.x + x, origin.y);
 				coordinates.add(newPoint);
 			}
-
 		}
-
 	}
 
-	public ArrayList<Point> get_coordinates(){
-		return coordinates;
-
-	}
-	// Returns true if a Ship covers a point on the board, false if it does not.
+	// Returns true if a Ship sits on Point p, false if it does not.
 	public boolean containsPoint(Point p){
 		boolean hasPoint = false;
 		for(Point point: coordinates){
@@ -46,22 +41,24 @@ public class Ship{
 		return hasPoint;
 
 	}
+
 	// Returns true if the receiving ship shares a point with the argument ship.
 	public boolean collidesWith(Ship s){
 		boolean collides = false;
-		for(Point point: s.get_coordinates()){
+		for(Point point: coordinates){
 			if (containsPoint(point))
 				collides = true;
 		}
 		return collides;
 
 	}
-	// //When the user enters a coordinate, this method can be called on each ship. If the ship contains the point, it should remember that it has been hit at that point. It could do this with a second PointCollection, or some other data strategy.
+	//When the user enters a coordinate, this method can be called on each ship. If the ship contains the point, it should remember that it has been hit at that point
 	public void shotFiredAtPoint(Point p){
+		// only save it in gotHit arrayList if this ship contains point p and it has not already been hit there
 		if (containsPoint(p) && !gotHit.contains(p))
 			gotHit.add(p);
 	}
-	// // returns true if shotFiredAtPoint has been called for this point in the ship. False if it has not, or if the point is not in the ship.
+	// returns true if shotFiredAtPoint gotHit at point p
 	public boolean isHitAtPoint(Point p){
 		boolean hasPoint = false;
 		for(Point point: gotHit){
@@ -71,28 +68,23 @@ public class Ship{
 		return hasPoint;
 
 	}
-	// //returns the number of points in the ship that have been hit. When the hitCount is equal to the length of the ship the ship is considered to be sunk.
+	//returns the number of points in the ship that have been hit
 	public int hitCount(){
 		return gotHit.size();
 
 	}
 
-	public int get_length(){
-		return shipLength;
-	}
-
+	// override toString, so if called, it will show all Point coordinates for this ship
 	public String toString(){
 		String return_string = "";
-		for(Point point: coordinates){
+		for(Point point: coordinates)
 			return_string += ("("+point.x+","+point.y+") ");
-
-		}
 		return return_string;
 
 	}
+
 	// true if ship has sunk
 	public boolean sunk(){
 		return shipLength == hitCount();
 	}
-
 }
