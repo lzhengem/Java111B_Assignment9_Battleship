@@ -29,14 +29,16 @@ public class BattleShip{
 		System.out.println();
 		// Set up the board and display it
 		Board board = new Board();
-		
-		System.out.println("Hello and welcome to Battleship! Please enter x and y coordinates");
-		System.out.println("(max coordinate of " + (board.layout.length-1)+ ") you would like to hit!");
+		System.out.println("Hello and welcome to Battleship!");
+		System.out.println("There are " + board.getNumShips() + " hidden ships.");
+		System.out.println("Please enter x and y coordinates (max coordinate of " + (board.layout.length-1)+ ") you would like to hit!\n");
 		board.displayBoard();
-		board.revealShips();
+		// shows where all the ships are
+		// board.revealShips();
 
-
+		// ask player to input coordinates, and take a shot there
 		System.out.println("Take a shot: (ex: 0 0)");
+		// if the player has not won yet, keep playing
 		while (board.continueGame()){
 			boolean tryAgain = true;
 			
@@ -47,9 +49,15 @@ public class BattleShip{
 					guess = scan.nextLine().split(" ");
 					x = Integer.parseInt(guess[0]);
 					y = Integer.parseInt(guess[1]);
-					// if they enter points off the grid, make them enter another guess
+
+					// if they enter points off the grid, make them enter another guess, or if they entered negative numbers
 					if(x >= board.xLength || y >= board.yLength){
-						System.out.println("Make sure your numbers are less than " +  board.xLength + " " + board.yLength);	
+						System.out.println("You are playing on a " +  board.xLength + " X " + board.yLength + " board!");	
+						System.out.println("Only coordinates up to " + (board.xLength - 1) + " and " + (board.yLength - 1) + " are allowed.");	
+						System.out.println();
+					}
+					else if ( x < 0 || y < 0) {
+						System.out.println("Negative numbers are not allowed");	
 						System.out.println();
 					}
 					else
