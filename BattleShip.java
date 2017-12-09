@@ -25,6 +25,7 @@ public class BattleShip{
 		Scanner scan =new Scanner(System.in);
 		String[] guess;
 		int x=-1,y=-1; //initialize to -1 or else compiler complains that it is not intialized while going through the try block
+		int revealShipsPass = 12345;
 
 		System.out.println();
 		// Set up the board and display it
@@ -50,6 +51,7 @@ public class BattleShip{
 					x = Integer.parseInt(guess[0]);
 					y = Integer.parseInt(guess[1]);
 
+
 					// if they enter points off the grid, make them enter another guess, or if they entered negative numbers
 					if(x >= board.xLength || y >= board.yLength){
 						System.out.println("You are playing on a " +  board.xLength + " X " + board.yLength + " board!");	
@@ -65,12 +67,15 @@ public class BattleShip{
 				}
 				// if player enters less than 2 numbers, make them enter again
 				catch (ArrayIndexOutOfBoundsException e){
+					// if user entered the passcode to reveal the ships, then show them
+					// if(x == revealShipsPass)
+					// 	board.revealShips();
+					// else 
 					System.out.println("Try again, please enter 2 numbers ");
 				}
 				// if the player enters a string, make them try again
 				catch(NumberFormatException e){
 					System.out.println("Try again, please enter 2 numbers, not characters ");
-
 				}
 			}
 			// hit the board with the coordinates entered and then display the new board
