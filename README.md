@@ -44,6 +44,7 @@ Please enter x and y coordinates (max coordinate of 9) you would like to hit!
 
  
 Take a shot: (ex: 0 0)
+
 Your next shot: 4 7 
 
 9 ~  ~  ~  ~  ~  ~  ~  ~  ~  ~
@@ -67,6 +68,7 @@ Your next shot: 4 7
 0 ~  ~  ~  ~  ~  ~  ~  ~  ~  ~
 
   0  1  2  3  4  5  6  7  8  9
+
 Hit!
 
  
@@ -93,6 +95,7 @@ Your next shot: 5 6
 0 ~  ~  ~  ~  ~  ~  ~  ~  ~  ~
 
   0  1  2  3  4  5  6  7  8  9
+
 Missed.
 
 ......
